@@ -1,0 +1,77 @@
+<!-- This page is illustrative and contains ideas about HTML formatting -->
+<!DOCTYPE HTML>
+<!-- Signals to the Layout Dialect which layout should be used to decorate this View -->
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/base}" lang="en">
+
+<head>
+    <title>Del Norte Science Olympiad</title>
+</head>
+
+<body>
+<th:block layout:fragment="body" th:remove="tag">
+    <!-- Start of body content specific to page -->
+    <div class="px-5 py-5 mx-auto">
+        <h1><strong>Official Del Norte High School Science Olympiad Web Page</strong></h1>
+        <p>Del Norte High School Science Olympiad</p>
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{/images/science olympiad.jpg}" alt="Java Development" height="250">
+                    <div class="card-body">
+                    <h5 class="card-title">What is Science Olympiad?</h5>
+                    <p class="card-text">
+                        <ol>
+                            <li>Team STEM based competition</li>
+                            <li>Nationally acclaimed</li>
+                            <li>23 events in all fields of science</li>
+                            <li>Regional, State, and National level competitions</li>
+                            <li>Division C (Highschool)</li>
+                        </ol>
+                    </p>
+                    <a href="/greet" class="btn btn-primary">Go Greet!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{/images/sciolygoals.png}" alt="Spring Development" height="250">
+                    <div class="card-body">
+                    <h5 class="card-title">BENEFITS</h5>
+                    <p class="card-text">
+                        <ol>
+                            <li>Expands science knowledge</li>
+                            <li>Improves study skills</li>
+                            <li>Exposure to science outside regular curriculum</li>
+                            <li>Great addition to college application & achievement – DNHS SO alumni accepted into top colleges</li>
+                            <li>Promotes teamwork & collaboration</li>
+                        </ol>
+                    </p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{/images/sciolyevents.png}" alt="Java Persistence" height="250">
+                    <div class="card-body">
+                    <h5 class="card-title">Website</h5>
+                    <p class="card-text">
+                        <ol>
+                            <li><a href="https://scilympiad.com/del-norte-so">Link to Sign-Up</a></li>
+                            <li>For more info, visit our site!</li>
+                            <li>Registration is now open for scilympiad!</li>
+                        </ol>
+                    </p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- End of body content specific to page -->
+</th:block>
+</body>
+
+</html>
