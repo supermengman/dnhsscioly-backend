@@ -51,6 +51,10 @@ public class Roster {
     public void setCategory(ArrayList<String> category) {
         this.category = category;
     }
+
+    public void addCategory(String category) {
+        this.category.add(category);
+    }
     public int getGrade() {
         return grade;
     }

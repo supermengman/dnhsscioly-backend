@@ -23,4 +23,18 @@ public class RosterApiController {
     public ResponseEntity<List<Roster>> getNames() {
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
     }
+
+    @PutMapping("/addEvent/{id}/{event}")
+    public ResponseEntity<Roster> setEvent(@PathVariable long id, @PathVariable String event) {
+
+        Optional<Roster> optional = repository.findById(id);
+        if (optional.isPresent()) {  // Good ID
+            Roster person = optional.get();
+            person.addCategory(event);
+            repository.save(person);
+            return new ResponseEntity<>(person, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }
