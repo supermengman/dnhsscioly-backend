@@ -24,7 +24,7 @@ public class RosterApiController {
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping("/addEvent/{id}/{event}")
+    @GetMapping("/addEvent/{id}/{event}")
     public ResponseEntity<Roster> setEvent(@PathVariable long id, @PathVariable String event) {
 
         Optional<Roster> optional = repository.findById(id);
