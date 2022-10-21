@@ -27,9 +27,13 @@ public class RosterApiController {
     @GetMapping("/addEvent/{id}/{event}")
     public ResponseEntity<Roster> setEvent(@PathVariable long id, @PathVariable String event) {
 
+        System.out.println(id + " " + event);
+
         Optional<Roster> optional = repository.findById(id);
+        System.out.println(optional);
         if (optional.isPresent()) {  // Good ID
             Roster person = optional.get();
+            System.out.println(person);
             person.addCategory(event);
             repository.save(person);
             return new ResponseEntity<>(person, HttpStatus.OK);

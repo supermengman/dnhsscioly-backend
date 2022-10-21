@@ -1,5 +1,6 @@
 package com.nighthawk.spring_portfolio.mvc.students;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class RosterInit {
                 int grade = Integer.parseInt(peopleArray[i][1]);
                 List<Roster> test = repository.findByNameIgnoreCase(name);  // JPA lookup
                 if (test.size() == 0)
-                    repository.save(new Roster(null, name, null, grade)); //JPA save
+                    repository.save(new Roster(null, name, new ArrayList<String>(), grade)); //JPA save
             }
             
         };

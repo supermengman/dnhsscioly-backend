@@ -17,14 +17,14 @@ public class Roster {
     @Column(unique=true)
     private String name;
 
-    private ArrayList<String> category;
+    private ArrayList<String> category = new ArrayList<String>();
     private int grade;
 
     // delombok: class definition
     public Roster(Long id, String name, ArrayList<String> category, int grade) {
         this.id = id;
         this.name = name;
-        this.category = category;
+        if (this.category != null) this.category = category;
         this.grade = grade;
     }
 
