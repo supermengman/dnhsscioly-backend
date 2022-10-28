@@ -17,12 +17,14 @@ public class RosterApiController {
     private RosterJpaRepository repository;
 
     /*
-    GET List of Jokes
+    GET list of people
      */
     @GetMapping("/")
     public ResponseEntity<List<Roster>> getNames() {
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
     }
+
+    // search events
     @GetMapping("/event/{event}")
     public ResponseEntity<List<Roster>> getEvent(@PathVariable String event) {
         List<Roster> people = new ArrayList<Roster>() ;
@@ -37,6 +39,7 @@ public class RosterApiController {
         return new ResponseEntity<>( people, HttpStatus.BAD_REQUEST);
     }
 
+    // add events
     @GetMapping("/addEvent/{id}/{event}")
     public ResponseEntity<Roster> setEvent(@PathVariable long id, @PathVariable String event) {
 
@@ -53,6 +56,7 @@ public class RosterApiController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    // remove events
     @GetMapping("/removeEvent/{id}/{event}")
     public ResponseEntity<Roster> delEvent(@PathVariable long id, @PathVariable String event) {
 
