@@ -55,6 +55,10 @@ public class Roster {
         this.category = category;
     }
 
+    public void removeCategory(int index) {
+        this.category.remove(index);
+    }
+
     public void addCategory(String category) {
         this.category.add(category);
     }
