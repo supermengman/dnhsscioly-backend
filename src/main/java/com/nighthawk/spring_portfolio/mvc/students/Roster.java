@@ -14,10 +14,13 @@ public class Roster {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    // Stores name of student
     @Column(unique=true)
     private String name;
 
+    // Stores list of events that each student has
     private ArrayList<String> category = new ArrayList<String>();
+    // Stores grade level
     private int grade;
 
     // delombok: class definition
@@ -32,7 +35,7 @@ public class Roster {
     public Roster() {
     }
 
-    // getters and settesr
+    // getters and setters
     public Long getId() {
         return id;
     }
