@@ -48,6 +48,11 @@ public class Roster {
     public ArrayList<String> getCategory() {
         return category;
     }
+
+    public boolean doesCategoryExist(String category) {
+        if (category.contains(category)) return true;
+        else return false;
+    }
     public void setCategory(ArrayList<String> category) {
         this.category = category;
     }

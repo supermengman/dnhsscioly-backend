@@ -1,5 +1,6 @@
 package com.nighthawk.spring_portfolio.mvc.students;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,5 @@ public interface RosterJpaRepository extends JpaRepository<Roster, Long> {
     void save(String Roster);
     List<Roster> findAllByOrderByNameAsc();
     List<Roster> findByNameIgnoreCase(String name);
+    List<Roster> findByCategory(String category);
 }

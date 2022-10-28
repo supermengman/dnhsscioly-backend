@@ -23,6 +23,19 @@ public class RosterApiController {
     public ResponseEntity<List<Roster>> getNames() {
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
     }
+    @GetMapping("/event/{event}")
+    public ResponseEntity<List<Roster>> getEvent(@PathVariable String event) {
+        List<Roster> people = new ArrayList<Roster>() ;
+        for (long i = 1; repository.existsById(i); i++) {
+            Optional<Roster> optional = repository.findById(i);
+            Roster person = optional.get();
+            if(person.getCategory().contains(event)) {
+                people.add(person);
+                
+            }
+        }
+        return new ResponseEntity<>( people, HttpStatus.BAD_REQUEST);
+    }
 
     @GetMapping("/addEvent/{id}/{event}")
     public ResponseEntity<Roster> setEvent(@PathVariable long id, @PathVariable String event) {
