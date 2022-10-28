@@ -9,29 +9,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController // annotation to simplify the creation of RESTful web services
-@RequestMapping("/api/roster")
-public class RosterApiController {
+@RequestMapping("/api/student")
+public class StudentApiController {
 
     // Autowired enables Control to connect HTML and POJO Object to database easily for CRUD operations
     @Autowired
-    private RosterJpaRepository repository;
+    private StudentJpaRepository repository;
 
     /*
     GET list of people
      */
     @GetMapping("/")
-    public ResponseEntity<List<Roster>> getNames() {
+    public ResponseEntity<List<Student>> getNames() {
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
     }
 
     // search events
     @GetMapping("/event/{event}")
-    public ResponseEntity<List<Roster>> getEvent(@PathVariable String event) {
-        List<Roster> people = new ArrayList<Roster>() ;
+    public ResponseEntity<List<Student>> getEvent(@PathVariable String event) {
+        List<Student> people = new ArrayList<Student>() ;
         for (long i = 1; repository.existsById(i); i++) {
-            Optional<Roster> optional = repository.findById(i);
-            Roster person = optional.get();
-            if(person.getCategory().contains(event)) {
+            Optional<Student> optional = repository.findById(i);
+            Student person = optional.get();
+            if(person.getEvent().contains(event)) {
                 people.add(person);
                 
             }
@@ -41,14 +41,14 @@ public class RosterApiController {
 
     // add events
     @GetMapping("/addEvent/{id}/{event}")
-    public ResponseEntity<Roster> setEvent(@PathVariable long id, @PathVariable String event) {
+    public ResponseEntity<Student> setEvent(@PathVariable long id, @PathVariable String event) {
 
         
 
-        Optional<Roster> optional = repository.findById(id);
+        Optional<Student> optional = repository.findById(id);
         if (optional.isPresent()) {  // Good ID
-            Roster person = optional.get();
-            person.addCategory(event);
+            Student person = optional.get();
+            person.addEvent(event);
             repository.save(person);
             return new ResponseEntity<>(person, HttpStatus.OK);
         }
@@ -58,17 +58,17 @@ public class RosterApiController {
 
     // remove events
     @GetMapping("/removeEvent/{id}/{event}")
-    public ResponseEntity<Roster> delEvent(@PathVariable long id, @PathVariable String event) {
+    public ResponseEntity<Student> delEvent(@PathVariable long id, @PathVariable String event) {
 
         
 
-        Optional<Roster> optional = repository.findById(id);
+        Optional<Student> optional = repository.findById(id);
         if (optional.isPresent()) {  // Good ID
-            Roster person = optional.get();
+            Student person = optional.get();
 
-            if (person.getCategory().contains(event)) {
-                int index = person.getCategory().indexOf(event);
-                person.removeCategory(index);
+            if (person.getEvent().contains(event)) {
+                int index = person.getEvent().indexOf(event);
+                person.removeEvent(index);
                 repository.save(person);
                 
                 return new ResponseEntity<>(person, HttpStatus.OK);

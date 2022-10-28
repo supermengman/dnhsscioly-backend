@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component // Scans Application for ModelInit Bean, this detects CommandLineRunner
-public class RosterInit {
+public class StudentInit {
     
     // Inject repositories
-    @Autowired RosterJpaRepository repository;
+    @Autowired StudentJpaRepository repository;
     
     @Bean
     CommandLineRunner runScioly() {  // The run() method will be executed after the application starts
@@ -34,9 +34,9 @@ public class RosterInit {
             for (int i = 0; i < peopleArray.length; i++) {
                 String name = peopleArray[i][0];
                 int grade = Integer.parseInt(peopleArray[i][1]);
-                List<Roster> test = repository.findByNameIgnoreCase(name);  // JPA lookup
+                List<Student> test = repository.findByNameIgnoreCase(name);  // JPA lookup
                 if (test.size() == 0)
-                    repository.save(new Roster(null, name, new ArrayList<String>(), grade)); //JPA save
+                    repository.save(new Student(null, name, new ArrayList<String>(), grade)); //JPA save
             }
             
         };

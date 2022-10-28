@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // Annotation to simplify creating an entity, which is a lightweight persistence domain object. Typically, an entity represents a table in a relational database, and each entity instance corresponds to a row in that table.
-public class Roster {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,20 +19,20 @@ public class Roster {
     private String name;
 
     // Stores list of events that each student has
-    private ArrayList<String> category = new ArrayList<String>();
+    private ArrayList<String> event = new ArrayList<String>();
     // Stores grade level
     private int grade;
 
     // delombok: class definition
-    public Roster(Long id, String name, ArrayList<String> category, int grade) {
+    public Student(Long id, String name, ArrayList<String> event, int grade) {
         this.id = id;
         this.name = name;
-        if (this.category != null) this.category = category;
+        if (this.event != null) this.event = event;
         this.grade = grade;
     }
 
     // no args
-    public Roster() {
+    public Student() {
     }
 
     // getters and setters
@@ -48,24 +48,24 @@ public class Roster {
     public void setName(String name) {
         this.name = name;
     }
-    public ArrayList<String> getCategory() {
-        return category;
+    public ArrayList<String> getEvent() {
+        return event;
     }
 
-    public boolean doesCategoryExist(String category) {
-        if (category.contains(category)) return true;
+    public boolean doesEventExist(String event) {
+        if (event.contains(event)) return true;
         else return false;
     }
-    public void setCategory(ArrayList<String> category) {
-        this.category = category;
+    public void setEvent(ArrayList<String> event) {
+        this.event = event;
     }
 
-    public void removeCategory(int index) {
-        this.category.remove(index);
+    public void removeEvent(int index) {
+        this.event.remove(index);
     }
 
-    public void addCategory(String category) {
-        this.category.add(category);
+    public void addEvent(String event) {
+        this.event.add(event);
     }
     public int getGrade() {
         return grade;
@@ -77,7 +77,7 @@ public class Roster {
     // data: tostring
     @Override
     public String toString() {
-        return "Roster [id=" + id + ", name=" + name + ", category=" + category + ", grade=" + grade + "]";
+        return "Student [id=" + id + ", name=" + name + ", event=" + event + ", grade=" + grade + "]";
     }
 
     // data: check if equal for anything
@@ -89,7 +89,7 @@ public class Roster {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Roster other = (Roster) obj;
+        Student other = (Student) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -100,10 +100,10 @@ public class Roster {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (category == null) {
-            if (other.category != null)
+        if (event == null) {
+            if (other.event != null)
                 return false;
-        } else if (!category.equals(other.category))
+        } else if (!event.equals(other.event))
             return false;
         if (grade != other.grade)
             return false;
@@ -117,7 +117,7 @@ public class Roster {
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((category == null) ? 0 : category.hashCode());
+        result = prime * result + ((event == null) ? 0 : event.hashCode());
         result = prime * result + grade;
         return result;
     }
