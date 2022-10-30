@@ -2,6 +2,7 @@ package com.nighthawk.spring_portfolio.mvc.students;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,7 @@ public class StudentApiController {
     }
 
     // add events
-    @GetMapping("/addEvent/{id}/{event}")
+    @PutMapping("/addEvent/{id}/{event}")
     public ResponseEntity<Student> setEvent(@PathVariable long id, @PathVariable String event) {
 
         
@@ -57,7 +58,7 @@ public class StudentApiController {
     }
 
     // remove events
-    @GetMapping("/removeEvent/{id}/{event}")
+    @PutMapping("/removeEvent/{id}/{event}")
     public ResponseEntity<Student> delEvent(@PathVariable long id, @PathVariable String event) {
 
         
@@ -80,4 +81,22 @@ public class StudentApiController {
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    // post new student to database
+    @PostMapping(path = "/addStudent", 
+        consumes = MediaType.APPLICATION_JSON_VALUE, 
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Student> createStudent(@RequestBody Student studentDetails) {
+
+        Student newStudent = repository.save(studentDetails);
+        System.out.println(studentDetails);
+
+        if (newStudent == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } else {
+            return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
+        }
+ 
+    }
 }
+
