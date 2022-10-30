@@ -89,7 +89,6 @@ public class StudentApiController {
     public ResponseEntity<Student> createStudent(@RequestBody Student studentDetails) {
 
         Student newStudent = repository.save(studentDetails);
-        System.out.println(studentDetails);
 
         if (newStudent == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
