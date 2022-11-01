@@ -43,7 +43,6 @@ public class Student {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.relationships = relationships;
-
     }
 
     // no args

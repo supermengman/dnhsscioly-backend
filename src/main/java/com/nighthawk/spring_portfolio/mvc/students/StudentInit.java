@@ -22,22 +22,25 @@ public class StudentInit {
 
             // 2d array for names and graduating year
             final String[][] peopleArray = {
-                    { "Don Tran", "2024" },
-                    { "Krish Patil", "2024" },
-                    { "Bailey Say", "2024" },
-                    { "Rohan Gaikwad", "2024" },
-                    { "Andrew Meng", "2024" },
-                    { "Nicolas Mounier", "2024" },
-                    { "Nicholas Ramos", "2024" },
+                    { "Don Tran", "2024", "donqt15@gmail.com", "858-900-8045" },
+                    { "Krish Patil", "2024", "n/a", "n/a" },
+                    { "Bailey Say", "2024", "n/a", "n/a" },
+                    { "Rohan Gaikwad", "2024", "n/a", "n/a" },
+                    { "Andrew Meng", "2024", "n/a", "n/a" },
+                    { "Nicolas Mounier", "2024", "n/a", "n/a" },
+                    { "Nicholas Ramos", "2024", "n/a", "n/a" },
             };
 
             // make sure Joke database is populated with starting jokes
             for (int i = 0; i < peopleArray.length; i++) {
                 String name = peopleArray[i][0];
                 int graduatingYear = Integer.parseInt(peopleArray[i][1]);
+                String email = peopleArray[i][2];
+                String phoneNumber = peopleArray[i][3];
                 List<Student> test = repository.findByNameIgnoreCase(name); // JPA lookup
                 if (test.size() == 0)
-                    repository.save(new Student(null, name, new ArrayList<String>(), graduatingYear)); // JPA save
+                    repository.save(new Student(null, name, new ArrayList<String>(), graduatingYear, email, phoneNumber,
+                            new ArrayList<Student>())); // JPA save
             }
 
         };
