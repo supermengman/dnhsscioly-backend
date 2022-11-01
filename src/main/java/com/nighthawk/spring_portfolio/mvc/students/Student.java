@@ -8,27 +8,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity // Annotation to simplify creating an entity, which is a lightweight persistence domain object. Typically, an entity represents a table in a relational database, and each entity instance corresponds to a row in that table.
+@Entity // Annotation to simplify creating an entity, which is a lightweight persistence
+        // domain object. Typically, an entity represents a table in a relational
+        // database, and each entity instance corresponds to a row in that table.
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     // Stores name of student
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
 
     // Stores list of events that each student has
     private ArrayList<String> event = new ArrayList<String>();
-    // Stores grade level
-    private int grade;
+    // Stores graduating year
+    private int graduatingYear;
 
     // delombok: class definition
-    public Student(Long id, String name, ArrayList<String> event, int grade) {
+    public Student(Long id, String name, ArrayList<String> event, int graduatingYear) {
         this.id = id;
         this.name = name;
-        if (this.event != null) this.event = event;
-        this.grade = grade;
+        if (this.event != null)
+            this.event = event;
+        this.graduatingYear = graduatingYear;
     }
 
     // no args
@@ -39,23 +42,30 @@ public class Student {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public ArrayList<String> getEvent() {
         return event;
     }
 
     public boolean doesEventExist(String event) {
-        if (event.contains(event)) return true;
-        else return false;
+        if (event.contains(event))
+            return true;
+        else
+            return false;
     }
+
     public void setEvent(ArrayList<String> event) {
         this.event = event;
     }
@@ -67,17 +77,19 @@ public class Student {
     public void addEvent(String event) {
         this.event.add(event);
     }
-    public int getGrade() {
-        return grade;
+
+    public int getGraduatingYear() {
+        return graduatingYear;
     }
-    public void setGrade(int grade) {
-        this.grade = grade;
+
+    public void setGraduatingYear(int graduatingYear) {
+        this.graduatingYear = graduatingYear;
     }
 
     // data: tostring
     @Override
     public String toString() {
-        return "Student [id=" + id + ", name=" + name + ", event=" + event + ", grade=" + grade + "]";
+        return "Student [id=" + id + ", name=" + name + ", event=" + event + ", graduatingYear=" + graduatingYear + "]";
     }
 
     // data: check if equal for anything
@@ -105,7 +117,7 @@ public class Student {
                 return false;
         } else if (!event.equals(other.event))
             return false;
-        if (grade != other.grade)
+        if (graduatingYear != other.graduatingYear)
             return false;
         return true;
     }
@@ -118,7 +130,7 @@ public class Student {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((event == null) ? 0 : event.hashCode());
-        result = prime * result + grade;
+        result = prime * result + graduatingYear;
         return result;
     }
 }
