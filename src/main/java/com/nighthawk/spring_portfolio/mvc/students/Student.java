@@ -24,14 +24,26 @@ public class Student {
     private ArrayList<String> event = new ArrayList<String>();
     // Stores graduating year
     private int graduatingYear;
+    // Stores email
+    private String email;
+    // Stores phone number
+    private String phoneNumber;
+    // Stores relationships between members (need to make an abstract/superclass for
+    // members)
+    private ArrayList<Student> relationships;
 
     // delombok: class definition
-    public Student(Long id, String name, ArrayList<String> event, int graduatingYear) {
+    public Student(Long id, String name, ArrayList<String> event, int graduatingYear, String email,
+            String phoneNumber, ArrayList<Student> relationships) {
         this.id = id;
         this.name = name;
         if (this.event != null)
             this.event = event;
         this.graduatingYear = graduatingYear;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.relationships = relationships;
+
     }
 
     // no args
@@ -84,6 +96,38 @@ public class Student {
 
     public void setGraduatingYear(int graduatingYear) {
         this.graduatingYear = graduatingYear;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public ArrayList<Student> getRelationships() {
+        return relationships;
+    }
+
+    public void setRelationship(ArrayList<Student> relationships) {
+        this.relationships = relationships;
+    }
+
+    public void addRelationship(Student newRelationship) {
+        this.relationships.add(newRelationship);
+    }
+
+    public void removeRelationship(int index) {
+        this.relationships.remove(index);
     }
 
     // data: tostring
