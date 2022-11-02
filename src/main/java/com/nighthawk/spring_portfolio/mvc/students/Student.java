@@ -16,9 +16,10 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    // Stores name of student
+    // Stores first & last name respectively of student
     @Column(unique = true)
-    private String name;
+    private String firstName;
+    private String lastName;
 
     // Stores list of events that each student has
     private ArrayList<String> event = new ArrayList<String>();
