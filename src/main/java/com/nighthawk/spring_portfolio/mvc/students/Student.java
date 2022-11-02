@@ -7,43 +7,50 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity // Annotation to simplify creating an entity, which is a lightweight persistence
         // domain object. Typically, an entity represents a table in a relational
         // database, and each entity instance corresponds to a row in that table.
+@Table(name = "students")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    // Stores first & last name respectively of student
-    @Column(unique = true)
-    private String firstName;
-    private String lastName;
+    // Stores name respectively of student
+    @Column(name = "name", nullable = false, length = 40)
+    private String name;
+
+    // Stores password of each student/user
+    @Column(nullable = false, length = 64)
+    private String password;
 
     // Stores list of events that each student has
     private ArrayList<String> event = new ArrayList<String>();
+
     // Stores graduating year
     private int graduatingYear;
+
     // Stores email
+    @Column(nullable = false, unique = true, length = 45)
     private String email;
+
     // Stores phone number
     private String phoneNumber;
-    // Stores relationships between members (need to make an abstract/superclass for
-    // members)
-    private ArrayList<Student> relationships;
 
     // delombok: class definition
-    public Student(Long id, String name, ArrayList<String> event, int graduatingYear, String email,
-            String phoneNumber, ArrayList<Student> relationships) {
+    public Student(Long id, String name, String password, ArrayList<String> event,
+            int graduatingYear, String email,
+            String phoneNumber) {
         this.id = id;
         this.name = name;
+        this.password = password;
         if (this.event != null)
             this.event = event;
         this.graduatingYear = graduatingYear;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.relationships = relationships;
     }
 
     // no args
@@ -69,6 +76,14 @@ public class Student {
 
     public ArrayList<String> getEvent() {
         return event;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean doesEventExist(String event) {
@@ -114,26 +129,11 @@ public class Student {
         this.phoneNumber = phoneNumber;
     }
 
-    public ArrayList<Student> getRelationships() {
-        return relationships;
-    }
-
-    public void setRelationship(ArrayList<Student> relationships) {
-        this.relationships = relationships;
-    }
-
-    public void addRelationship(Student newRelationship) {
-        this.relationships.add(newRelationship);
-    }
-
-    public void removeRelationship(int index) {
-        this.relationships.remove(index);
-    }
-
     // data: tostring
     @Override
     public String toString() {
-        return "Student [id=" + id + ", name=" + name + ", event=" + event + ", graduatingYear=" + graduatingYear + "]";
+        return "Student [id=" + id + ", name=" + name + ",  event=" + event
+                + ", graduatingYear=" + graduatingYear + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
     }
 
     // data: check if equal for anything
@@ -155,6 +155,16 @@ public class Student {
             if (other.name != null)
                 return false;
         } else if (!name.equals(other.name))
+            return false;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (phoneNumber == null) {
+            if (other.phoneNumber != null)
+                return false;
+        } else if (!phoneNumber.equals(other.phoneNumber))
             return false;
         if (event == null) {
             if (other.event != null)

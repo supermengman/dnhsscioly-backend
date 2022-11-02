@@ -31,7 +31,7 @@ public class StudentInit {
                     { "Nicholas Ramos", "2024", "n/a", "n/a" },
             };
 
-            // make sure Joke database is populated with starting jokes
+            // make sure people array database is populated with starting values for members
             for (int i = 0; i < peopleArray.length; i++) {
                 String name = peopleArray[i][0];
                 int graduatingYear = Integer.parseInt(peopleArray[i][1]);
@@ -39,8 +39,8 @@ public class StudentInit {
                 String phoneNumber = peopleArray[i][3];
                 List<Student> test = repository.findByNameIgnoreCase(name); // JPA lookup
                 if (test.size() == 0)
-                    repository.save(new Student(null, name, new ArrayList<String>(), graduatingYear, email, phoneNumber,
-                            new ArrayList<Student>())); // JPA save
+                    repository.save(new Student(null, name, null, new ArrayList<String>(), graduatingYear, email,
+                            phoneNumber)); // JPA save
             }
 
         };
