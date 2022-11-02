@@ -29,6 +29,7 @@ public class StudentInit {
                     { "Andrew Meng", "2024", "n/a", "n/a" },
                     { "Nicolas Mounier", "2024", "n/a", "n/a" },
                     { "Nicholas Ramos", "2024", "n/a", "n/a" },
+                    { "Joe Jack Bill", "2024", "n/a", "n/a" }
             };
 
             // make sure people array database is populated with starting values for members
@@ -39,7 +40,7 @@ public class StudentInit {
                 String phoneNumber = peopleArray[i][3];
                 List<Student> test = repository.findByNameIgnoreCase(name); // JPA lookup
                 if (test.size() == 0)
-                    repository.save(new Student(null, name, null, new ArrayList<String>(), graduatingYear, email,
+                    repository.save(new Student(null, name, "", new ArrayList<String>(), graduatingYear, email,
                             phoneNumber)); // JPA save
             }
 
