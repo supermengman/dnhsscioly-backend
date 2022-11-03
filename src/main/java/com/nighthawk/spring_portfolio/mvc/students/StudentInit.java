@@ -21,23 +21,26 @@ public class StudentInit {
 
             // 2d array for names and grades
             final String[][] peopleArray = {
-                {"Don Tran", "11"},
-                {"Krish Patil", "11"},
-                {"Bailey Say", "11"},
-                {"Rohan Gaikwad", "11"},
-                {"Andrew Meng", "11"},
-                {"Nicolas Mounier", "11"},
-                {"Nicholas Ramos", "11"},
-            };
+                { "Don Tran", "2024", "donqt15@gmail.com", "858-900-8045" },
+                { "Krish Patil", "2024", "n/a", "n/a" },
+                { "Bailey Say", "2024", "n/a", "n/a" },
+                { "Rohan Gaikwad", "2024", "n/a", "n/a" },
+                { "Andrew Meng", "2024", "n/a", "n/a" },
+                { "Nicolas Mounier", "2024", "n/a", "n/a" },
+                { "Nicholas Ramos", "2024", "n/a", "n/a" },
+        };
 
-            // make sure Joke database is populated with starting jokes
-            for (int i = 0; i < peopleArray.length; i++) {
-                String name = peopleArray[i][0];
-                int grade = Integer.parseInt(peopleArray[i][1]);
-                List<Student> test = repository.findByNameIgnoreCase(name);  // JPA lookup
-                if (test.size() == 0)
-                    repository.save(new Student(null, name, new ArrayList<String>(), grade)); //JPA save
-            }
+        // make sure people array database is populated with starting values for members
+        for (int i = 0; i < peopleArray.length; i++) {
+            String name = peopleArray[i][0];
+            int graduatingYear = Integer.parseInt(peopleArray[i][1]);
+            String email = peopleArray[i][2];
+            String phoneNumber = peopleArray[i][3];
+            List<Student> test = repository.findByNameIgnoreCase(name); // JPA lookup
+            if (test.size() == 0)
+                repository.save(new Student(null, name, "a2e4822a98337283e39f7b60acf85ec9", new ArrayList<String>(), graduatingYear, email,
+                        phoneNumber)); // JPA save
+        }
             
         };
     }

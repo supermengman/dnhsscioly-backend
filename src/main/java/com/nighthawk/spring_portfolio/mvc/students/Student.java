@@ -14,21 +14,39 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    // Stores name of student
-    @Column(unique=true)
+    // Stores name respectively of student
+    @Column(name = "name", nullable = false, length = 40)
     private String name;
+
+    // Stores password of each student/user
+    @Column(nullable = false, length = 64)
+    private String passwordHash;
 
     // Stores list of events that each student has
     private ArrayList<String> event = new ArrayList<String>();
-    // Stores grade level
-    private int grade;
+
+    // Stores graduating year
+    private int graduatingYear;
+
+    // Stores email
+    @Column(nullable = false, unique = true, length = 45)
+    private String email;
+
+    // Stores phone number
+    private String phoneNumber;
 
     // delombok: class definition
-    public Student(Long id, String name, ArrayList<String> event, int grade) {
+    public Student(Long id, String name, String passwordHash, ArrayList<String> event,
+            int graduatingYear, String email,
+            String phoneNumber) {
         this.id = id;
         this.name = name;
-        if (this.event != null) this.event = event;
-        this.grade = grade;
+        this.passwordHash = passwordHash;
+        if (this.event != null)
+            this.event = event;
+        this.graduatingYear = graduatingYear;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     // no args
@@ -39,23 +57,38 @@ public class Student {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public ArrayList<String> getEvent() {
         return event;
     }
 
-    public boolean doesEventExist(String event) {
-        if (event.contains(event)) return true;
-        else return false;
+    public String getPasswordHash() {
+        return this.passwordHash;
     }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public boolean doesEventExist(String event) {
+        if (event.contains(event))
+            return true;
+        else
+            return false;
+    }
+
     public void setEvent(ArrayList<String> event) {
         this.event = event;
     }
@@ -67,17 +100,36 @@ public class Student {
     public void addEvent(String event) {
         this.event.add(event);
     }
-    public int getGrade() {
-        return grade;
+
+    public int getGraduatingYear() {
+        return graduatingYear;
     }
-    public void setGrade(int grade) {
-        this.grade = grade;
+
+    public void setGraduatingYear(int graduatingYear) {
+        this.graduatingYear = graduatingYear;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     // data: tostring
     @Override
     public String toString() {
-        return "Student [id=" + id + ", name=" + name + ", event=" + event + ", grade=" + grade + "]";
+        return "Student [id=" + id + ", name=" + name + ",  event=" + event
+                + ", graduatingYear=" + graduatingYear + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
     }
 
     // data: check if equal for anything
@@ -100,12 +152,22 @@ public class Student {
                 return false;
         } else if (!name.equals(other.name))
             return false;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (phoneNumber == null) {
+            if (other.phoneNumber != null)
+                return false;
+        } else if (!phoneNumber.equals(other.phoneNumber))
+            return false;
         if (event == null) {
             if (other.event != null)
                 return false;
         } else if (!event.equals(other.event))
             return false;
-        if (grade != other.grade)
+        if (graduatingYear != other.graduatingYear)
             return false;
         return true;
     }
@@ -118,7 +180,7 @@ public class Student {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((event == null) ? 0 : event.hashCode());
-        result = prime * result + grade;
+        result = prime * result + graduatingYear;
         return result;
     }
 }
