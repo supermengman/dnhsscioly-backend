@@ -84,7 +84,7 @@ public class EventInit {
                 String name = eventArrayC[i];
                 List<Event> test = repository.findByNameIgnoreCase(name);  // JPA lookup
                 if (test.size() == 0)
-                    repository.save(new Event(null, name, new ArrayList<String>(), 'b')); //JPA save
+                    repository.save(new Event(null, name, new ArrayList<String>(), 'c')); //JPA save
             }
         };
     }

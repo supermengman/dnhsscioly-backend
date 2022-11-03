@@ -24,7 +24,7 @@ public class Student {
 
     // Stores password of each student/user
     @Column(nullable = false, length = 64)
-    private String password;
+    private String passwordHash;
 
     // Stores list of events that each student has
     private ArrayList<String> event = new ArrayList<String>();
@@ -40,12 +40,12 @@ public class Student {
     private String phoneNumber;
 
     // delombok: class definition
-    public Student(Long id, String name, String password, ArrayList<String> event,
+    public Student(Long id, String name, String passwordHash, ArrayList<String> event,
             int graduatingYear, String email,
             String phoneNumber) {
         this.id = id;
         this.name = name;
-        this.password = password;
+        this.passwordHash = passwordHash;
         if (this.event != null)
             this.event = event;
         this.graduatingYear = graduatingYear;
@@ -78,12 +78,12 @@ public class Student {
         return event;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getPasswordHash() {
+        return this.passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public boolean doesEventExist(String event) {

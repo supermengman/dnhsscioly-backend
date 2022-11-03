@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.json.*;
 import java.util.*;
 
 @RestController // annotation to simplify the creation of RESTful web services
@@ -126,6 +126,26 @@ public class StudentApiController {
         } else {
             return new ResponseEntity<>(updatedStudent, HttpStatus.OK);
         }
+    }
+
+    // login
+    @PostMapping(path = "/login")
+    public ResponseEntity<Student> login(@RequestBody String credentials) {
+        JSONObject loginCreds = new JSONObject(credentials);
+        String loginName = (String) loginCreds.get("name");
+        String passwordHash = (String) loginCreds.get("passwordHash");
+        Optional<Student> test = repository.findByName(loginName);
+        if (test.isPresent()) {
+            Student user = test.get();
+            if (passwordHash.matches(user.getPasswordHash())) {
+                return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
     }
 
 }

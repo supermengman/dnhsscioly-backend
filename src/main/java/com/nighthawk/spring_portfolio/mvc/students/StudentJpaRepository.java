@@ -2,6 +2,7 @@ package com.nighthawk.spring_portfolio.mvc.students;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -18,4 +19,5 @@ public interface StudentJpaRepository extends JpaRepository<Student, Long> {
     List<Student> findByEmailIgnoreCase(String email);
 
     List<Student> findByEvent(String event);
+    Optional<Student> findByName(String name);
 }
