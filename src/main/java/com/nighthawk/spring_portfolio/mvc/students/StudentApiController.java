@@ -10,6 +10,8 @@ import java.util.*;
 
 @RestController // annotation to simplify the creation of RESTful web services
 @RequestMapping("/api/student")
+// @CrossOrigin(origins = { "http://127.0.0.1:5500",
+// "https://icygs.github.io/dnscioly-frontend/" , "*"})
 public class StudentApiController {
 
     // Autowired enables Control to connect HTML and POJO Object to database easily
@@ -25,6 +27,8 @@ public class StudentApiController {
     /*
      * GET list of people
      */
+    // @CrossOrigin(origins = { "http://127.0.0.1:5500",
+    // "https://icygs.github.io/dnscioly-frontend/" , "*"})
     @GetMapping("/")
     public ResponseEntity<List<Student>> getNames() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
