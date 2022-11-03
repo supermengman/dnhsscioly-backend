@@ -114,7 +114,7 @@ public class StudentApiController {
 
         // updates data
         student.setName(newStudentDetails.getName());
-        student.setPassword(newStudentDetails.getPassword());
+        student.setPasswordHash(newStudentDetails.getPasswordHash());
         student.setGraduatingYear(newStudentDetails.getGraduatingYear());
         student.setEmail(newStudentDetails.getEmail());
         student.setPhoneNumber(newStudentDetails.getPhoneNumber());
