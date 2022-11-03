@@ -101,7 +101,7 @@ public class StudentApiController {
     }
 
     // updates student info
-    @PostMapping(path = "/updateStudent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/updateStudent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Student> updateStudent(@RequestBody UpdatedStudentData newStudentDetails) {
         // Finds students w/ specified email
         List<Student> existingStudents = repository.findByEmailIgnoreCase(newStudentDetails.getCurrentEmail());
