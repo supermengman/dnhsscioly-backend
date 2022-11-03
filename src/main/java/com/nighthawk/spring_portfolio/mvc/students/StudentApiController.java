@@ -10,6 +10,7 @@ import java.util.*;
 
 @RestController // annotation to simplify the creation of RESTful web services
 @RequestMapping("/api/student")
+@CrossOrigin(origins = { "http://127.0.0.1:5500", "https://icygs.github.io/" })
 public class StudentApiController {
 
     // Autowired enables Control to connect HTML and POJO Object to database easily
@@ -94,17 +95,36 @@ public class StudentApiController {
         } else {
             return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
         }
-
     }
 
+    // updates student info
     @PostMapping(path = "/updateStudent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Student> updateStudent(@RequestBody Student studentDetails) {
-        Student newStudent = repository.save(studentDetails);
+    public ResponseEntity<Student> updateStudent(@RequestBody UpdatedStudentData newStudentDetails) {
+        // Finds students w/ specified email
+        List<Student> existingStudents = repository.findByEmailIgnoreCase(newStudentDetails.getCurrentEmail());
 
-        if (newStudent == null) {
+        // checks if student actually exists in db
+        if (existingStudents.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        // picks first student (assumes only one instance of student w/ particular
+        // email)
+        Student student = existingStudents.get(0);
+
+        // updates data
+        student.setName(newStudentDetails.getName());
+        student.setPassword(newStudentDetails.getPassword());
+        student.setGraduatingYear(newStudentDetails.getGraduatingYear());
+        student.setEmail(newStudentDetails.getEmail());
+        student.setPhoneNumber(newStudentDetails.getPhoneNumber());
+
+        Student updatedStudent = repository.save(student);
+
+        if (updatedStudent == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } else {
-            return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
+            return new ResponseEntity<>(updatedStudent, HttpStatus.OK);
         }
     }
 
