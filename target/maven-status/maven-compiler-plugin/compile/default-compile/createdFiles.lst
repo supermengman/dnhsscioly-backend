@@ -1,4 +1,5 @@
 com/nighthawk/spring_portfolio/mvc/students/StudentJpaRepository.class
+com/nighthawk/spring_portfolio/mvc/students/UpdatedStudentData.class
 com/nighthawk/spring_portfolio/mvc/events/Event.class
 com/nighthawk/spring_portfolio/mvc/events/EventApiController.class
 com/nighthawk/spring_portfolio/SQLDialect.class
@@ -9,3 +10,4 @@ com/nighthawk/spring_portfolio/Main.class
 com/nighthawk/spring_portfolio/mvc/students/StudentApiController.class
 com/nighthawk/spring_portfolio/Encrypt.class
 com/nighthawk/spring_portfolio/mvc/students/Student.class
+com/nighthawk/WebSecurityConfig.class
