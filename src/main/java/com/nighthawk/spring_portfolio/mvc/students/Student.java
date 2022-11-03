@@ -7,8 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity // Annotation to simplify creating an entity, which is a lightweight persistence domain object. Typically, an entity represents a table in a relational database, and each entity instance corresponds to a row in that table.
+@Entity // Annotation to simplify creating an entity, which is a lightweight persistence
+        // domain object. Typically, an entity represents a table in a relational
+        // database, and each entity instance corresponds to a row in that table.
+@Table(name = "students")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

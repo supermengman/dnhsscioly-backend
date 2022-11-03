@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-Main<spring>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.nighthawk.spring_portfolio.Main",
+      "projectName": "spring",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
