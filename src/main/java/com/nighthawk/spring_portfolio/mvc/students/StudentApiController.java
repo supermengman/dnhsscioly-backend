@@ -97,4 +97,15 @@ public class StudentApiController {
 
     }
 
+    @PostMapping(path = "/updateStudent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Student> updateStudent(@RequestBody Student studentDetails) {
+        Student newStudent = repository.save(studentDetails);
+
+        if (newStudent == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } else {
+            return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
+        }
+    }
+
 }
