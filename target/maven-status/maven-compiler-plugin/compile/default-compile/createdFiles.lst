@@ -1,4 +1,7 @@
+com/nighthawk/spring_portfolio/mvc/students/WebConfig$1.class
 com/nighthawk/spring_portfolio/mvc/students/StudentJpaRepository.class
+com/nighthawk/spring_portfolio/mvc/students/WebConfig.class
+com/nighthawk/spring_portfolio/mvc/students/UpdatedStudentData.class
 com/nighthawk/spring_portfolio/mvc/events/Event.class
 com/nighthawk/spring_portfolio/mvc/events/EventApiController.class
 com/nighthawk/spring_portfolio/SQLDialect.class

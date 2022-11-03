@@ -11,6 +11,10 @@ public class UpdatedStudentData extends Student {
         this.currentEmail = currentEmail;
     }
 
+    public UpdatedStudentData() {
+        super();
+    }
+
     // getter & setter for new email
     public String getCurrentEmail() {
         return currentEmail;
