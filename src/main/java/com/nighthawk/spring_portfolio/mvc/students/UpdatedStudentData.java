@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class UpdatedStudentData extends Student {
     private String currentEmail;
 
-    public UpdatedStudentData(Long id, String name, String password, ArrayList<String> event, int graduatingYear,
+    public UpdatedStudentData(Long id, String name, String passwordHash, ArrayList<String> event, int graduatingYear,
             String email, String phoneNumber, String currentEmail) {
-        super(id, name, password, event, graduatingYear, email, phoneNumber);
+        super(id, name, passwordHash, event, graduatingYear, email, phoneNumber);
         this.currentEmail = currentEmail;
     }
 
