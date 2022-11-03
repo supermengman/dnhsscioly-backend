@@ -10,6 +10,7 @@ import org.json.*;
 import java.util.*;
 
 @RestController // annotation to simplify the creation of RESTful web services
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/student")
 public class StudentApiController {
 
@@ -20,6 +21,7 @@ public class StudentApiController {
     /*
     GET list of people
      */
+    @CrossOrigin(origins = "*")
     @GetMapping("/")
     public ResponseEntity<List<Student>> getNames() {
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
