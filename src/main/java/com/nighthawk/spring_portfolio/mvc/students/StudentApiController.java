@@ -26,7 +26,7 @@ public class StudentApiController {
     /*
      * GET list of people
      */
-    @CrossOrigin(origins = { "http://127.0.0.1:5500", "https://icygs.github.io/dnscioly-frontend/" , "*"})
+    // @CrossOrigin(origins = { "http://127.0.0.1:5500", "https://icygs.github.io/dnscioly-frontend/" , "*"})
     @GetMapping("/")
     public ResponseEntity<List<Student>> getNames() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
