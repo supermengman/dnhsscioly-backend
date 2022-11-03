@@ -88,7 +88,7 @@ public class StudentApiController {
     }
 
     // post new student to database
-    @PostMapping(path = "/addStudent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/addStudent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Student> createStudent(@RequestBody Student studentDetails) {
 
         Student newStudent = repository.save(studentDetails);
