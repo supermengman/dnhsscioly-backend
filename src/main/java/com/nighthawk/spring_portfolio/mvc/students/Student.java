@@ -129,14 +129,14 @@ public class Student {
         this.phoneNumber = phoneNumber;
     }
 
-    // data: tostring
+    // data: tostring (not in use)
     @Override
     public String toString() {
         return "Student [id=" + id + ", name=" + name + ",  event=" + event
                 + ", graduatingYear=" + graduatingYear + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
     }
 
-    // data: check if equal for anything
+    // data: check if equal for anything (not in use)
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -176,7 +176,7 @@ public class Student {
         return true;
     }
 
-    // not sure what hashcode is
+    // creates hash (not in use)
     @Override
     public int hashCode() {
         final int prime = 31;

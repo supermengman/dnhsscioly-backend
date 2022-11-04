@@ -6,32 +6,30 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.*;
 
 @RestController // annotation to simplify the creation of RESTful web services
 @RequestMapping("/api/events")
 public class EventApiController {
 
-    // Autowired enables Control to connect HTML and POJO Object to database easily for CRUD operations
+    // Autowired enables Control to connect HTML and POJO Object to database easily
+    // for CRUD operations
     @Autowired
     private EventJpaRepository repository;
 
     /*
-    GET list of people
+     * GET list of events (still need mapping to populate)
      */
     @GetMapping("/")
     public ResponseEntity<List<Event>> getNames() {
-        return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
     // search events
     @GetMapping("/{event}")
     public ResponseEntity<List<Event>> getEvent(@PathVariable String event) {
-        
-        return new ResponseEntity<>( repository.findByNameIgnoreCase(event), HttpStatus.OK);
+
+        return new ResponseEntity<>(repository.findByNameIgnoreCase(event), HttpStatus.OK);
     }
 
-    
 }
-

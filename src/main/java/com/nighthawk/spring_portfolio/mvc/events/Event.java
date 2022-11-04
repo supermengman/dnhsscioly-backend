@@ -15,14 +15,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity // Annotation to simplify creating an entity, which is a lightweight persistence domain object. Typically, an entity represents a table in a relational database, and each entity instance corresponds to a row in that table.
+@Entity
+
+// Events
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     // Stores name of student
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
 
     // Stores list of events that each student has

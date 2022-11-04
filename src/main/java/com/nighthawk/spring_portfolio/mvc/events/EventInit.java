@@ -10,81 +10,84 @@ import org.springframework.stereotype.Component;
 
 @Component // Scans Application for ModelInit Bean, this detects CommandLineRunner
 public class EventInit {
-    
+
     // Inject repositories
-    @Autowired EventJpaRepository repository;
-    
+    @Autowired
+    EventJpaRepository repository;
+
     @Bean
-    CommandLineRunner runSciolyEvents() {  // The run() method will be executed after the application starts
+    CommandLineRunner runSciolyEvents() { // The run() method will be executed after the application starts
         return args -> {
             // Fail safe data validations
 
-            // 2d array for names and grades
+            // 2d array for events
             final String[] eventArrayB = {
-                "anatomy and physiology",
-                "bio process lab",
-                "disease detectives",
-                "forestry",
-                "green generation",
-                "dynamic planet",
-                "meteorology",
-                "road scholar",
-                "rocks and minerals",
-                "solar system",
-                "cant judge a power",
-                "crave the wave",
-                "crime busters",
-                "sounds of music",
-                "storm the castle",
-                "bridge",
-                "flight",
-                "roller coaster",
-                "wheeled vehicle",
-                "codebusters",
-                "experimental design",
-                "fast facts",
-                "write it do it",
+                    "anatomy and physiology",
+                    "bio process lab",
+                    "disease detectives",
+                    "forestry",
+                    "green generation",
+                    "dynamic planet",
+                    "meteorology",
+                    "road scholar",
+                    "rocks and minerals",
+                    "solar system",
+                    "cant judge a power",
+                    "crave the wave",
+                    "crime busters",
+                    "sounds of music",
+                    "storm the castle",
+                    "bridge",
+                    "flight",
+                    "roller coaster",
+                    "wheeled vehicle",
+                    "codebusters",
+                    "experimental design",
+                    "fast facts",
+                    "write it do it",
             };
 
-            // make sure Joke database is populated with starting jokes
+            // populates people in events (WPI not working)
             for (int i = 0; i < eventArrayB.length; i++) {
                 String name = eventArrayB[i];
-                List<Event> test = repository.findByNameIgnoreCase(name);  // JPA lookup
+                List<Event> test = repository.findByNameIgnoreCase(name); // JPA lookup
                 if (test.size() == 0)
-                    repository.save(new Event(null, name, new ArrayList<String>(), 'b')); //JPA save
+                    repository.save(new Event(null, name, new ArrayList<String>(), 'b')); // JPA save
             }
-            
+
+            // event array
             final String[] eventArrayC = {
-                "anatomy and physiology",
-                "cell biology",
-                "disease detectives",
-                "forestry",
-                "green generation",
-                "astronomy",
-                "dynamic planet",
-                "remote sensing",
-                "rocks and minerals",
-                "chem lab",
-                "forensics",
-                "its about time",
-                "trajectory",
-                "wifi lab",
-                "environmental chemistry",
-                "bridge",
-                "detector building",
-                "flight",
-                "scrambler",
-                "codebusters",
-                "experimental design",
-                "fermi questions",
-                "write it do it",
+                    "anatomy and physiology",
+                    "cell biology",
+                    "disease detectives",
+                    "forestry",
+                    "green generation",
+                    "astronomy",
+                    "dynamic planet",
+                    "remote sensing",
+                    "rocks and minerals",
+                    "chem lab",
+                    "forensics",
+                    "its about time",
+                    "trajectory",
+                    "wifi lab",
+                    "environmental chemistry",
+                    "bridge",
+                    "detector building",
+                    "flight",
+                    "scrambler",
+                    "codebusters",
+                    "experimental design",
+                    "fermi questions",
+                    "write it do it",
             };
 
+            // events array
             for (int i = 0; i < eventArrayC.length; i++) {
                 String name = eventArrayC[i];
-                List<Event> test = repository.findByNameIgnoreCase(name);  // JPA lookup
+                List<Event> test = repository.findByNameIgnoreCase(name); // JPA lookup
                 if (test.size() == 0)
-                    repository.save(new Event(null, name, new ArrayList<String>(), 'c')); //JPA save
+                    repository.save(new Event(null, name, new ArrayList<String>(), 'c')); // JPA save
             }
         };
     }

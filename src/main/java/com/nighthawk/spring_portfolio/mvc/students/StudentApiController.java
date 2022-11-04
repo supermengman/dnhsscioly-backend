@@ -8,17 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import org.json.*;
 import java.util.*;
 
-@RestController // annotation to simplify the creation of RESTful web services
+@RestController
 @RequestMapping("/api/student")
-// @CrossOrigin(origins = { "http://127.0.0.1:5500",
-// "https://icygs.github.io/dnscioly-frontend/" , "*"})
 public class StudentApiController {
 
-    // Autowired enables Control to connect HTML and POJO Object to database easily
-    // for CRUD operations
+    // inject repo
     @Autowired
     private StudentJpaRepository repository;
 
+    // to home page
     @GetMapping("/index")
     public String viewHomePage() {
         return "index";
@@ -27,8 +25,6 @@ public class StudentApiController {
     /*
      * GET list of people
      */
-    // @CrossOrigin(origins = { "http://127.0.0.1:5500",
-    // "https://icygs.github.io/dnscioly-frontend/" , "*"})
     @GetMapping("/")
     public ResponseEntity<List<Student>> getNames() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
@@ -88,7 +84,7 @@ public class StudentApiController {
     }
 
     // post new student to database
-    @PutMapping(path = "/addStudent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/addStudent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Student> createStudent(@RequestBody Student studentDetails) {
 
         Student newStudent = repository.save(studentDetails);
@@ -111,19 +107,22 @@ public class StudentApiController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        // picks first student (assumes only one instance of student w/ particular
+        // picks first student by referencing email (assumes only one instance of
+        // student w/ particular
         // email)
         Student student = existingStudents.get(0);
 
-        // updates data
+        // updates data for student
         student.setName(newStudentDetails.getName());
         student.setPasswordHash(newStudentDetails.getPasswordHash());
         student.setGraduatingYear(newStudentDetails.getGraduatingYear());
         student.setEmail(newStudentDetails.getEmail());
         student.setPhoneNumber(newStudentDetails.getPhoneNumber());
 
+        // saves updated student to repo, overwrites by id
         Student updatedStudent = repository.save(student);
 
+        // checks if new student is null or not
         if (updatedStudent == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } else {
@@ -131,13 +130,16 @@ public class StudentApiController {
         }
     }
 
-    // login
+    // login code
     @PostMapping(path = "/login")
     public ResponseEntity<Student> login(@RequestBody String credentials) {
+        // store login credentials
         JSONObject loginCreds = new JSONObject(credentials);
         String loginName = (String) loginCreds.get("name");
         String passwordHash = (String) loginCreds.get("passwordHash");
         Optional<Student> test = repository.findByName(loginName);
+
+        // checks if credentials match
         if (test.isPresent()) {
             Student user = test.get();
             if (passwordHash.matches(user.getPasswordHash())) {
